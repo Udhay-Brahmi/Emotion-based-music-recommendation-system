@@ -4,13 +4,13 @@ Imagin what would happen if you have a tool which will recommend you different m
   <t> </t>
 <ul>
   <li>Library used :</li>
-  <ol>
+  <ul>
     <li>Streamlit</li>
     <li>Opencv</li>
     <li>Numpy</li>
     <li>Pandas</li>
     <li>Collections</li>
     <li>Tensorflow(keras)</li>
-  <ol>
+  <ul>
 </ul>
 </h4>
