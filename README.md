@@ -12,6 +12,5 @@ Library used :
     <li>Collections</li>
     <li>Tensorflow(keras)</li>
 </ul>
------------------------------------------------------------------------------------------------------------
 <h2>DEMO VIDEO LINK : </h2> (https://youtu.be/eSBsY4WwgGw)
 
