@@ -233,7 +233,7 @@ model.add(Dropout(0.5))
 model.add(Dense(7, activation='softmax'))
 
 # Loading weights from pretrained model
-# Reference : 
+# Model Reference : https://github.com/atulapra/Emotion-detection
 model.load_weights('model.h5')
 
 emotion_dict = {0: "Angry", 1: "Disgusted", 2: "Fearful", 3: "Happy", 4: "Neutral", 5: "Sad", 6: "Surprised"}
@@ -260,11 +260,15 @@ with col2:
         list.clear()
 
         while True:
+            # Basically, ret is a boolean regarding whether or not there was a return at all, at the frame is each frame that is returned.
             ret, frame = cap.read()
             if not ret:
                 break
+            # CascadeClassifier : It is a machine learning based approach where a cascade function is trained from a lot of positive and negative images.
             face = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+            # cv2.cvtColor() method is used to convert an image from one color space to another.
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            # Detects objects of different sizes in the input image.
             faces = face.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
             # Counter
             count = count + 1
@@ -272,9 +276,9 @@ with col2:
             for (x, y, w, h) in faces:
                 # Creating rectangle around face
                 cv2.rectangle(frame, (x, y - 50), (x + w, y + h + 10), (255, 0, 0), 2)
-                roi_gray = gray[y:y + h, x:x + w]
-
                 # Taking image out
+                roi_gray = gray[y:y + h, x:x + w]
+                # expand_dims() function is used to expand the shape of an array.
                 cropped_img = np.expand_dims(np.expand_dims(cv2.resize(roi_gray, (48, 48)), -1), 0)
 
                 # Predicting model on cropped image
@@ -285,7 +289,10 @@ with col2:
                 list.append(emotion_dict[max_index])
 
                 # Putting text of emotion on top of rectangle
+                # fontScale = 1
+                # thickness = 2
                 cv2.putText(frame, emotion_dict[max_index], (x + 20, y - 60), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
+                # Image interpolation occurs when you resize or distort your image from one pixel grid to another. 
                 cv2.imshow('Video', cv2.resize(frame, (1000, 700), interpolation=cv2.INTER_CUBIC))
 
             # For emergency close window
