@@ -1,3 +1,4 @@
+# Importing modules
 import numpy as np
 import streamlit as st
 import pandas as pd
@@ -210,10 +211,15 @@ def pre(l):
 
 # Creating model
 # kerel_size = specifying the height and width of the 2D convolution window.
+# Convolution window : A convolution layer defines a window by which we examine a subset of the image. 
+"""RELU : The rectified linear activation function or ReLU for short is a piecewise linear function that will output the input directly if it is positive, 
+otherwise, it will output zero."""
 model = Sequential()
 model.add(Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=(48,48,1)))
 model.add(Conv2D(64, kernel_size=(3, 3), activation='relu'))
+# MaxPooling2D : Max pooling is a pooling operation that selects the maximum element from the region of the feature map covered by the filter.
 model.add(MaxPooling2D(pool_size=(2, 2)))
+# Dropout is a technique where randomly selected neurons are ignored during training.Dropout is a technique where randomly selected neurons are ignored during training.
 model.add(Dropout(0.25))
 model.add(Conv2D(128, kernel_size=(3, 3), activation='relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
@@ -223,9 +229,11 @@ model.add(Dropout(0.25))
 model.add(Flatten())
 model.add(Dense(1024, activation='relu'))
 model.add(Dropout(0.5))
+# Softmax : It is mainly used to normalize neural networks output to fit between zero and one.
 model.add(Dense(7, activation='softmax'))
 
 # Loading weights from pretrained model
+# Reference : 
 model.load_weights('model.h5')
 
 emotion_dict = {0: "Angry", 1: "Disgusted", 2: "Fearful", 3: "Happy", 4: "Neutral", 5: "Sad", 6: "Surprised"}
