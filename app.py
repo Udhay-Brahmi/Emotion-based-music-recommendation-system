@@ -197,6 +197,7 @@ def fun(list):
 #return unique list of emotion in sorted order based on count.
 def pre(l):
     # result contain sorted emotion's(duplicate present if any)
+    # Counter has a most_common() method that returns a list of tuples of (element, count) sorted by counts.
     result = [item for items, c in Counter(l).most_common()
               for item in [items] * c]
 
@@ -238,8 +239,9 @@ model.load_weights('model.h5')
 
 emotion_dict = {0: "Angry", 1: "Disgusted", 2: "Fearful", 3: "Happy", 4: "Neutral", 5: "Sad", 6: "Surprised"}
 
-# Required syntax
+# Not Attach OpenCL context to OpenCV.
 cv2.ocl.setUseOpenCL(False)
+# return video from the first webcam on your computer.
 cap = cv2.VideoCapture(0)
 
 # Text or heading's
