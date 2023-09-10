@@ -1,4 +1,5 @@
 streamlit
+streamlit
 numpy
 pandas
 opencv-python
