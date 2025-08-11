@@ -1,8 +1,0 @@
-streamlit
-numpy
-pandas
-opencv-python
-tensorflow
-keras
-collection
-collection
